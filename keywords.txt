@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For LEDs
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+TTLED	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+on	KEYWORD2
+off	KEYWORD2
+fadeIn	KEYWORD2
+fadeOut	KEYWORD2
+setValue	KEYWORD2
+getValue	KEYWORD2
+getState	KEYWORD2
+toggle	KEYWORD2
+blink	KEYWORD2
+blinkAsync	KEYWORD2
+
+fadeAsync	KEYWORD2
+stopAsync	KEYWORD2
+update	KEYWORD2
+setMaxValue	KEYWORD2
