@@ -10,9 +10,7 @@ Download the ZIP file and extract it's content. Put the TTLED folder in "ARDUINO
 In the Arduino IDE you can test the sample sketches under Samples->TTLED.
 
 ## Usage
-### Create TTLED object
-####Syntax
-TTLED ledObject = TTLED(pin, activeHigh);
+### Create object TTLED(pin, activeHigh)
 
 ####Parameters
 pin: the number of the pin which is attached to the LED
@@ -28,9 +26,6 @@ TTLED led = TTLED(5, true);
 ### on()
 This method turns the attached LED on. All async modes will be stopped.
 
-####Syntax
-ledObject.on();
-
 ####Parameters
 none
 
@@ -43,9 +38,6 @@ led.on();
 ### off()
 This method turns the attached LED off. All async modes will be stopped.
 
-####Syntax
-ledObject.off();
-
 ####Parameters
 none
 
@@ -57,9 +49,6 @@ led.off();
 
 ## getState()
 This method returns the logical state of the LED. It will be LOW if LED is fully off. It will be HIGH if LED fully or partially on.
-
-####Syntax
-ledObject.getState();
 
 ####Parameters
 none
@@ -78,9 +67,6 @@ else{
 ## getValue()
 This method returns the current brightness (0-255) of the LED.
 
-####Syntax
-ledObject.getValue();
-
 ####Parameters
 none
 
@@ -92,9 +78,6 @@ int brightness = led.getValue();
 
 ### toggle()
 Turns the LED on if it's off. Turns the LED off if it's on.
-
-####Syntax
-ledObject.toggle();
 
 ####Parameters
 none
@@ -109,9 +92,6 @@ led.toggle();
 ### stopAsync()
 Stops the LED's async mode. Async mode gets started by calling blinkAsync() or fadeAsync().
 
-####Syntax
-ledObject.stopAsync();
-
 ####Parameters
 none
 
@@ -123,8 +103,6 @@ led.stopAsync();
 
 ### blinkAsync(unsigned int blinkInterval)
 Starts the blinking mode. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
-####Syntax
-ledObject.blinkAsync(blinkInterval);
 
 ####Parameters
 blinkInterval: LED is on for blinkInterval ms and off for blinkInterval ms
@@ -140,8 +118,6 @@ void loop(){
 
 ### blink(unsigned int blinkInterval, uint8_t times)
 Blinks the LED n times. Blinking is not done asynchronously. This means, your sketch will stop until blinking is done.
-####Syntax
-ledObject.blink(blinkInterval, times);
 
 ####Parameters
 blinkInterval: LED is on for blinkInterval ms and off for blinkInterval ms
@@ -155,8 +131,6 @@ led.blink(1000, 5);
 
 ### fadeAsync(unsigned int time)
 Starts fading the LED. Fadin is based on an internal ease in/out algorithm. Ensure to call the update() method continuously. If you don't call it, the LED will not fade.
-####Syntax
-ledObject.fadeAsync(time);
 
 ####Parameters
 time: Time in ms for one full fade period (in and out)
@@ -172,8 +146,6 @@ void loop(){
 
 ### fadeIn(unsigned int fadeTime)
 Fades the LED in (from current brightness to max brightness).
-####Syntax
-ledObject.fadeIn(fadeTime);
 
 ####Parameters
 fadeTime: Time in ms for fading in
@@ -186,8 +158,6 @@ led.fadeIn(1000);
 
 ### fadeOut(unsigned int fadeTime)
 Fades the LED out (from current brightness to dark).
-####Syntax
-ledObject.fadeOut(fadeTime);
 
 ####Parameters
 fadeTime: Time in ms for fading out
@@ -200,8 +170,6 @@ led.fadeOut(1000);
 
 ### setValue(uint8_t value)
 Sets the LED's PWM value. It is the same as analogWrite();
-####Syntax
-ledObject.setValue(value);
 
 ####Parameters
 value: 0 - 255 (0=off, 255 = full brightness)
@@ -214,8 +182,6 @@ led.setValue(150);
 
 ### setMaxValue(uint8_t value)
 Sets the allowed maximum brightness of the LED. For example the method on() will take this maximum brightness value.
-####Syntax
-ledObject.setMaxValue(value);
 
 ####Parameters
 value: 0 - 255 (0=off, 255 = full brightness)
