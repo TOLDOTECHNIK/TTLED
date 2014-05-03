@@ -98,12 +98,7 @@ void TTLED::setValue(uint8_t value){
 }
 
 void TTLED::setMaxValue(uint8_t value){
-  if(_maxValue == 0){
-    _maxValue = 255; 
-  }
-  else{
-    _maxValue = value; 
-  }
+  _maxValue = value;
   setValue(_currentValue);
 }
 
