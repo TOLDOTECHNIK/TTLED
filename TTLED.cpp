@@ -28,7 +28,7 @@ void TTLED::update(){
         _fadeDirection = LOW;
       }
     }
-    _currentValue = easeInOutSine(_fadeDirection == HIGH ? millis() - lastToggleTime : _fadeTime - (millis() - lastToggleTime), _fadeDirection == HIGH ? 0x01 : _maxValue, _fadeDirection == HIGH ? _maxValue : 0x01, _fadeTime);
+    _currentValue = easeInOutSine(_fadeDirection == HIGH ? millis() - lastToggleTime : _fadeTime - (millis() - lastToggleTime), _fadeDirection == HIGH ? 1 : 255, _fadeDirection == HIGH ? 255 : 1, _fadeTime);
     setValue(_currentValue);
   }
   else if(_blinkInterval > 0){
@@ -80,18 +80,20 @@ void TTLED::blink(unsigned int blinkInterval, uint8_t times){
 }
 
 void TTLED::setValue(uint8_t value){
+  _currentValue = value;
+  value = _maxValue / 255.0 * value;
   if(_activeHigh){
     analogWrite(_pin, value);
   }
   else{
     analogWrite(_pin, 255 - value);
   }
-  _currentValue = value;
-  if(value > 0){
+  
+  if(_currentValue > 0){
     _logicalState = HIGH;
   }
   else{
-    _logicalState = HIGH;
+    _logicalState = LOW;
   }
 }
 
@@ -102,6 +104,7 @@ void TTLED::setMaxValue(uint8_t value){
   else{
     _maxValue = value; 
   }
+  setValue(_currentValue);
 }
 
 void TTLED::on(){
@@ -121,21 +124,14 @@ void TTLED::fadeIn(unsigned int fadeTime, uint8_t stopAsync){
     //fadeTime = fadeTime / 255.0 * (255 - _currentValue);
     uint8_t startValue = _currentValue;
     for (unsigned int cycle = 0; cycle <= fadeTime / PAUSE_MS; cycle++){
-      _currentValue = easeInOutSine(cycle * PAUSE_MS, startValue, _maxValue, fadeTime);
+      _currentValue = easeInOutSine(cycle * PAUSE_MS, startValue, 255, fadeTime);
       setValue(_currentValue); 
       delay(PAUSE_MS); 
     }
   }
-  if(_maxValue < 255){
-    _currentValue = _maxValue;
-    setValue(_currentValue);
-  }
-  else{
-    _currentValue = 255;
-    digitalWrite(_pin, _activeHigh);
-  }
-
-  _logicalState = HIGH;
+  
+  _currentValue = 255;
+  setValue(_currentValue);
 }
 
 void TTLED::off(){
@@ -161,8 +157,7 @@ void TTLED::fadeOut(unsigned int fadeTime, uint8_t stopAsync){
     }
   }
   _currentValue = 0;
-  _logicalState = LOW;
-  digitalWrite(_pin, !_activeHigh);
+  setValue(_currentValue);
 }
 
 void TTLED::fadeAsync(unsigned int time){
