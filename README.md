@@ -181,7 +181,7 @@ nothing
 led.setValue(150);
 
 ### setMaxValue(uint8_t value)
-Sets the allowed maximum brightness of the LED. For example the method on() will take this maximum brightness value.
+Sets the allowed maximum brightness of the LED. For example the method on() will take this maximum brightness value. If max value is set to 0, the LED is off, but it is working like brightness was set to 255. This means, you can still get virtually the on/off state. 
 
 ####Parameters
 value: 0 - 255 (0=off, 255 = full brightness)
