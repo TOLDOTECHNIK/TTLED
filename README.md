@@ -102,7 +102,7 @@ nothing
 led.stopAsync();
 
 ### blinkAsync(unsigned int blinkInterval)
-Starts the blinking mode. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
+Starts the auto blinking mode. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
 
 ####Parameters
 blinkInterval: LED is on for blinkInterval ms and off for blinkInterval ms
@@ -112,6 +112,22 @@ nothing
 
 ####Example
 led.blinkAsync(1000);
+void loop(){
+	led.update();
+}
+
+### blinkAsync(unsigned int onInterval, unsigned int offInterval)
+Starts the auto blinking mode with different on/off times. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
+
+####Parameters
+onInterval: LED is on for onInterval ms 
+offInterval: LED is off for offInterval ms
+
+####Returns
+nothing
+
+####Example
+led.blinkAsync(10, 990);    //LED blinks every second for 10ms
 void loop(){
 	led.update();
 }

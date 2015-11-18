@@ -1,6 +1,6 @@
 /*
 * TTLED
-* Version 1.0 January, 2014
+* Version 1.1 November, 2015
 * Copyright 2009 TOLDO TECHNIK
 * For details, see https://github.com/TOLDOTECHNIK/TTLED
 */
@@ -27,6 +27,7 @@ class TTLED{
     void toggle();
     void blink(unsigned int blinkInterval, uint8_t times);
     void blinkAsync(unsigned int blinkInterval);
+	void blinkAsync(unsigned int onInterval, unsigned int offInterval);
     void setValue(uint8_t value);
     void setMaxValue(uint8_t value);
     uint8_t getValue();
@@ -46,7 +47,8 @@ class TTLED{
     uint8_t _logicalState;
     
     unsigned int _fadeTime;
-    unsigned int _blinkInterval;
+    unsigned int _onInterval;
+	unsigned int _offInterval;
     unsigned long lastToggleTime;
 };
 

@@ -1,6 +1,6 @@
 /*
 * TTLED
-* Version 1.0 January, 2014
+* Version 1.1 November, 2015
 * Copyright 2009 TOLDO TECHNIK
 * For details, see https://github.com/TOLDOTECHNIK/TTLED
 */
@@ -31,9 +31,13 @@ void TTLED::update(){
     _currentValue = easeInOutSine(_fadeDirection == HIGH ? millis() - lastToggleTime : _fadeTime - (millis() - lastToggleTime), _fadeDirection == HIGH ? 1 : 255, _fadeDirection == HIGH ? 255 : 1, _fadeTime);
     setValue(_currentValue);
   }
-  else if(_blinkInterval > 0){
+  else if(_onInterval > 0){
     _logicalState = HIGH;
-    if(millis() - lastToggleTime > _blinkInterval){
+	if(_offInterval > 0 && _currentValue == 0 && millis() - lastToggleTime > _offInterval){	//turn on if offInterval is set and conditions are true
+	  lastToggleTime = millis();
+	  fadeIn(0, false);
+	}
+    else if(millis() - lastToggleTime > _onInterval && (_currentValue > 0 || _offInterval == 0)){
       lastToggleTime = millis();
       if(_currentValue > 0){
         fadeOut(0, false);
@@ -66,7 +70,16 @@ void TTLED::blinkAsync(unsigned int blinkInterval){
   if(_fadeTime > 0){
     stopAsync(); 
   }
-  _blinkInterval = blinkInterval;
+  _offInterval = 0;
+  _onInterval = blinkInterval;
+}
+
+void TTLED::blinkAsync(unsigned int onInterval, unsigned int offInterval){
+  if(_fadeTime > 0){
+    stopAsync(); 
+  }
+  _onInterval = onInterval;
+  _offInterval = offInterval;
 }
 
 void TTLED::blink(unsigned int blinkInterval, uint8_t times){
@@ -156,7 +169,7 @@ void TTLED::fadeOut(unsigned int fadeTime, uint8_t stopAsync){
 }
 
 void TTLED::fadeAsync(unsigned int time){
-  if(_blinkInterval > 0){
+  if(_onInterval > 0){
     stopAsync(); 
   }
   _fadeTime = time / 2; 
@@ -175,7 +188,8 @@ uint8_t TTLED::easeInOutSine(unsigned int currentTime, uint8_t startValue, uint8
 
 void TTLED::stopAsync(){
   _fadeTime = 0;
-  _blinkInterval = 0;
+  _onInterval = 0;
+  _offInterval = 0;
 }
 
 
