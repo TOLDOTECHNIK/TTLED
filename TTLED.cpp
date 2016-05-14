@@ -95,6 +95,9 @@ void TTLED::blink(unsigned int blinkInterval, uint8_t times){
 void TTLED::setValue(uint8_t value){
   _currentValue = value;
   value = _maxValue / 255.0 * value;
+  if(value == 0 && _currentValue > 0){    //prevent led from turning off when fading 
+    value = 1;
+  }
   if(_activeHigh){
     analogWrite(_pin, value);
   }
