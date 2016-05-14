@@ -4,6 +4,7 @@ This is a LED library for Arduino. It provides everyday tasks like on/off, fade,
 
 ## History
 2014-01-15 Initial release
+2016-05-14 Prevent LED from turning off when fading
 
 ## Installation
 Download the ZIP file and extract it's content. Put the TTLED folder in "ARDUINOAPP/hardware/libraries/".
