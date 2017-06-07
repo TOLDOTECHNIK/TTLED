@@ -27,7 +27,7 @@ class TTLED{
     void toggle();
     void blink(unsigned int blinkInterval, uint8_t times);
     void blinkAsync(unsigned int blinkInterval);
-	void blinkAsync(unsigned int onInterval, unsigned int offInterval);
+    void blinkAsync(unsigned int onInterval, unsigned int offInterval);
     void setValue(uint8_t value);
     void setMaxValue(uint8_t value);
     uint8_t getValue();
@@ -48,7 +48,7 @@ class TTLED{
     
     unsigned int _fadeTime;
     unsigned int _onInterval;
-	unsigned int _offInterval;
+	  unsigned int _offInterval;
     unsigned long lastToggleTime;
 };
 
