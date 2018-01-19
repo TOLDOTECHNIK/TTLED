@@ -1,0 +1,22 @@
+{
+  "name": "TTLED",
+  "keywords": "LED, PWM, blink, fade",
+  "description": "This is a LED library for Arduino. It provides everyday tasks like on/off, fade, blink, ...",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/TOLDOTECHNIK/TTLED.git"
+  },
+  "authors":
+  [
+    {
+      "name": "TOLDO TECHNIK",
+      "email": "info@toldotechnik.li",
+      "url": "http://www.toldotechnik.li",
+      "maintainer": true
+    }
+  ],
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}

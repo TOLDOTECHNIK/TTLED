@@ -3,8 +3,8 @@
 This is a LED library for Arduino. It provides everyday tasks like on/off, fade, blink, ...
 
 ## History
-2014-01-15 Initial release<br>
-2016-05-14 Prevent LED from turning off when fading
+- 2014-01-15 Initial release
+- 2016-05-14 Prevent LED from turning off when fading
 
 ## Installation
 Download the ZIP file and extract its content. Move the TTLED folder to "ARDUINOAPP/hardware/libraries/".
@@ -22,7 +22,9 @@ activeHigh: true, false. true: digital pin is attached to LED's anode. false: di
 nothing
 
 #### Example
+```
 TTLED led = TTLED(5, true);
+```
 
 ### on()
 This method turns the attached LED on. All async modes will be stopped.
@@ -34,7 +36,9 @@ none
 nothing
 
 #### Example
+```cpp
 led.on();
+```
 
 ### off()
 This method turns the attached LED off. All async modes will be stopped.
@@ -46,7 +50,9 @@ none
 nothing
 
 #### Example
+```cpp
 led.off();
+```
 
 ## getState()
 This method returns the logical state of the LED. It will be LOW if LED is fully off. It will be HIGH if LED fully or partially on.
@@ -58,12 +64,14 @@ none
 HIGH/LOW
 
 #### Example
+```cpp
 if(led.getState() == HIGH){
 	//code if led is on
 }
 else{
 	//code if led is fully off
 }
+```
 
 ## getValue()
 This method returns the current brightness (0-255) of the LED.
@@ -75,7 +83,9 @@ none
 uint8_t 0 - 255 (0=off, 255 = full brightness)
 
 #### Example
+```cpp
 int brightness = led.getValue();
+```
 
 ### toggle()
 Turns the LED on if it's off. Turns the LED off if it's on.
@@ -87,8 +97,9 @@ none
 nothing
 
 #### Example
+```cpp
 led.toggle();
-
+```
 
 ### stopAsync()
 Stops the LED's async mode. Async mode gets started by calling blinkAsync() or fadeAsync().
@@ -100,7 +111,9 @@ none
 nothing
 
 #### Example
+```cpp
 led.stopAsync();
+```
 
 ### blinkAsync(unsigned int blinkInterval)
 Starts the auto blinking mode. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
@@ -112,10 +125,12 @@ blinkInterval: LED is on for blinkInterval ms and off for blinkInterval ms
 nothing
 
 #### Example
+```cpp
 led.blinkAsync(1000);
 void loop(){
 	led.update();
 }
+```
 
 ### blinkAsync(unsigned int onInterval, unsigned int offInterval)
 Starts the auto blinking mode with different on/off times. Ensure to call the update() method continuously. If you don't call it, the LED will not blink.
@@ -128,10 +143,12 @@ offInterval: LED is off for offInterval ms
 nothing
 
 #### Example
+```cpp
 led.blinkAsync(10, 990);    //LED blinks every second for 10ms
 void loop(){
 	led.update();
 }
+```
 
 ### blink(unsigned int blinkInterval, uint8_t times)
 Blinks the LED n times. Blinking is not done asynchronously. This means, your sketch will stop until blinking is done.
@@ -144,7 +161,9 @@ times: Blinking gets repeated n times.
 nothing
 
 #### Example
+```cpp
 led.blink(1000, 5);
+```
 
 ### fadeAsync(unsigned int time)
 Starts fading the LED. Fadin is based on an internal ease in/out algorithm. Ensure to call the update() method continuously. If you don't call it, the LED will not fade.
@@ -156,10 +175,12 @@ time: Time in ms for one full fade period (in and out)
 nothing
 
 #### Example
+```cpp
 led.fadeAsync(1000);
 void loop(){
 	led.update();
 }
+```
 
 ### fadeIn(unsigned int fadeTime)
 Fades the LED in (from current brightness to max brightness).
@@ -171,7 +192,9 @@ fadeTime: Time in ms for fading in
 nothing
 
 #### Example
+```cpp
 led.fadeIn(1000);
+```
 
 ### fadeOut(unsigned int fadeTime)
 Fades the LED out (from current brightness to dark).
@@ -183,7 +206,9 @@ fadeTime: Time in ms for fading out
 nothing
 
 #### Example
+```cpp
 led.fadeOut(1000);
+```
 
 ### setValue(uint8_t value)
 Sets the LED's PWM value. It is the same as analogWrite();
@@ -195,7 +220,9 @@ value: 0 - 255 (0=off, 255 = full brightness)
 nothing
 
 #### Example
+```cpp
 led.setValue(150);
+```
 
 ### setMaxValue(uint8_t value)
 Sets the allowed maximum brightness of the LED. For example the method on() will take this maximum brightness value. If max value is set to 0, the LED is off, but it is working like brightness was set to 255. This means, you can still get virtually the on/off state. 
@@ -207,7 +234,6 @@ value: 0 - 255 (0=off, 255 = full brightness)
 nothing
 
 #### Example
+```cpp
 led.setMaxValue(200);
-
-
-
+```
