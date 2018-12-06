@@ -7,6 +7,7 @@ This library is ESP32 compatible now. Be aware there's no LED fade capability.
 ## History
 - 2014-01-15 Initial release
 - 2016-05-14 Prevent LED from turning off when fading
+- 2018-12-06 ESP32 analogWrite fix
 
 ## Installation
 Download the ZIP file and extract its content. Move the TTLED folder to "ARDUINOAPP/hardware/libraries/".
