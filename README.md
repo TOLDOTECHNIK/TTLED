@@ -2,6 +2,8 @@
 
 This is a LED library for Arduino. It provides everyday tasks like on/off, fade, blink, ...
 
+This library is ESP32 compatible now. Be aware there's no LED fade capability.
+
 ## History
 - 2014-01-15 Initial release
 - 2016-05-14 Prevent LED from turning off when fading

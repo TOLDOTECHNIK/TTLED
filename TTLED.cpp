@@ -99,10 +99,18 @@ void TTLED::setValue(uint8_t value){
     value = 1;
   }
   if(_activeHigh){
-    analogWrite(_pin, value);
+    #if defined(ARDUINO_ARCH_ESP32)
+      digitalWrite(_pin, value > 0 ? HIGH : LOW);
+    #else
+      analogWrite(_pin, value);
+    #endif
   }
   else{
-    analogWrite(_pin, 255 - value);
+    #if defined(ARDUINO_ARCH_ESP32)
+      digitalWrite(_pin, value > 0 ? LOW : HIGH);
+    #else
+      analogWrite(_pin, 255 - value);
+    #endif
   }
   
   if(_currentValue > 0){
