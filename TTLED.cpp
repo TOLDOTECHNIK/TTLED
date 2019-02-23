@@ -1,6 +1,8 @@
 /*
 * TTLED
 * Version 1.1 November, 2015
+* Version 1.2 December, 2018
+* Version 1.3 February, 2019
 * Copyright 2009 TOLDO TECHNIK
 * For details, see https://github.com/TOLDOTECHNIK/TTLED
 */
@@ -102,6 +104,10 @@ void TTLED::setValue(uint8_t value){
     #if defined(ARDUINO_ARCH_ESP32)
       digitalWrite(_pin, value > 0 ? HIGH : LOW);
     #else
+      if(_currentValue == 0 && _logicalState == HIGH){  //prevent led from flickering when fading in again
+        analogWrite(_pin, 1);
+        delay(5);
+      }
       analogWrite(_pin, value);
     #endif
   }
@@ -109,6 +115,10 @@ void TTLED::setValue(uint8_t value){
     #if defined(ARDUINO_ARCH_ESP32)
       digitalWrite(_pin, value > 0 ? LOW : HIGH);
     #else
+      if(_currentValue == 0 && _logicalState == HIGH){  //prevent led from flickering when fading in again
+        analogWrite(_pin, 254);
+        delay(5);
+      }
       analogWrite(_pin, 255 - value);
     #endif
   }
