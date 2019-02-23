@@ -97,15 +97,19 @@ void TTLED::blink(unsigned int blinkInterval, uint8_t times){
 void TTLED::setValue(uint8_t value){
   _currentValue = value;
   value = _maxValue / 255.0 * value;
-  if(value == 0 && _currentValue > 0){    //prevent led from turning off when fading 
+  if(value == 0 && _currentValue > 0){                          //prevent led from turning off when fading 
     value = 1;
   }
   if(_activeHigh){
     #if defined(ARDUINO_ARCH_ESP32)
       digitalWrite(_pin, value > 0 ? HIGH : LOW);
     #else
-      if(_currentValue == 0 && _logicalState == HIGH){  //prevent led from flickering when fading in again
+      if(_currentValue == 0 && _logicalState == HIGH){          //prevent led from flickering when fading in again
         analogWrite(_pin, 1);
+        delay(5);
+      }
+      else if(_currentValue == 255 && _logicalState == LOW){    //prevent led from flickering when fading out again
+        analogWrite(_pin, 254);
         delay(5);
       }
       analogWrite(_pin, value);
@@ -115,8 +119,12 @@ void TTLED::setValue(uint8_t value){
     #if defined(ARDUINO_ARCH_ESP32)
       digitalWrite(_pin, value > 0 ? LOW : HIGH);
     #else
-      if(_currentValue == 0 && _logicalState == HIGH){  //prevent led from flickering when fading in again
+      if(_currentValue == 0 && _logicalState == HIGH){          //prevent led from flickering when fading in again
         analogWrite(_pin, 254);
+        delay(5);
+      }
+      else if(_currentValue == 255 && _logicalState == LOW){    //prevent led from flickering when fading out again
+        analogWrite(_pin, 1);
         delay(5);
       }
       analogWrite(_pin, 255 - value);
