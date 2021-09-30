@@ -12,13 +12,16 @@
 TTLED::TTLED(uint8_t pin, uint8_t activeHigh){
   _pin=pin;
   _activeHigh = activeHigh;
-  pinMode(_pin, OUTPUT);
-  fadeOut(0, true);
   _fadeDirection = HIGH;
   _maxValue = 255;
 }
 
-void TTLED::update(){
+void TTLED::init(void){
+  pinMode(_pin, OUTPUT);
+  fadeOut(0, true);
+}
+
+void TTLED::update(void){
   if(_fadeTime > 0){
     _logicalState = HIGH;
     if(millis() - lastToggleTime > _fadeTime){
@@ -51,11 +54,11 @@ void TTLED::update(){
   }
 }
 
-uint8_t TTLED::getState(){
+uint8_t TTLED::getState(void){
   return _logicalState; 
 }
 
-uint8_t TTLED::getValue(){
+uint8_t TTLED::getValue(void){
   return _currentValue; 
 }
 
@@ -144,7 +147,7 @@ void TTLED::setMaxValue(uint8_t value){
   setValue(_currentValue);
 }
 
-void TTLED::on(){
+void TTLED::on(void){
   fadeIn(0, true); 
 }
 
@@ -215,7 +218,7 @@ uint8_t TTLED::easeInOutSine(unsigned int currentTime, uint8_t startValue, uint8
   return -endValue * cos((float)currentTime / duration * (PI / 2.0)) + endValue + startValue;
 }
 
-void TTLED::stopAsync(){
+void TTLED::stopAsync(void){
   _fadeTime = 0;
   _onInterval = 0;
   _offInterval = 0;

@@ -6,6 +6,7 @@ TTLED led = TTLED(LED_PIN, true);
 
 void setup(){
    Serial.begin(9600);
+   led.init();
 }
 
 void loop(){

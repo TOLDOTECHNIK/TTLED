@@ -12,6 +12,7 @@ TTLED	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
+init KEYWORD2
 on	KEYWORD2
 off	KEYWORD2
 fadeIn	KEYWORD2
@@ -22,7 +23,6 @@ getState	KEYWORD2
 toggle	KEYWORD2
 blink	KEYWORD2
 blinkAsync	KEYWORD2
-
 fadeAsync	KEYWORD2
 stopAsync	KEYWORD2
 update	KEYWORD2

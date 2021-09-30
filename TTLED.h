@@ -19,21 +19,22 @@
 class TTLED{
   public:
     TTLED(uint8_t ledPin, uint8_t activeHigh);
-    void update();
-    void on();
+    void init(void);
+    void update(void);
+    void on(void);
     void fadeIn(unsigned int fadeTime);
-    void off();
+    void off(void);
     void fadeOut(unsigned int fadeTime);
-    void toggle();
+    void toggle(void);
     void blink(unsigned int blinkInterval, uint8_t times);
     void blinkAsync(unsigned int blinkInterval);
     void blinkAsync(unsigned int onInterval, unsigned int offInterval);
     void setValue(uint8_t value);
     void setMaxValue(uint8_t value);
-    uint8_t getValue();
+    uint8_t getValue(void);
     void fadeAsync(unsigned int time);
-    void stopAsync();
-    uint8_t getState();
+    void stopAsync(void);
+    uint8_t getState(void);
   private:
     void fadeIn(unsigned int fadeTime, uint8_t stopAsync);
     void fadeOut(unsigned int fadeTime, uint8_t stopAsync);

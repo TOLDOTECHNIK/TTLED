@@ -9,6 +9,7 @@ This library is ESP32 compatible now. Be aware there's no LED fade capability.
 - 2016-05-14 Prevent LED from turning off when fading
 - 2018-12-06 ESP32 analogWrite fix
 - 2019-02-23 prevent led from flickering when fading in/out again
+- 2021-09-30 fix compile errors
 
 ## Installation
 Download the ZIP file and extract its content. Move the TTLED folder to "ARDUINOAPP/hardware/libraries/".
@@ -28,6 +29,19 @@ nothing
 #### Example
 ```
 TTLED led = TTLED(5, true);
+```
+### init()
+This method must be called. It initialises the LED pin.
+
+#### Parameters
+none
+
+#### Returns
+nothing
+
+#### Example
+```cpp
+led.init();
 ```
 
 ### on()

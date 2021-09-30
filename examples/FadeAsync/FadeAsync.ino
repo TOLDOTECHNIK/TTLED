@@ -8,6 +8,7 @@
 TTLED led = TTLED(LED_PIN, true);    //create LED object
 
 void setup(){
+  led.init();
   led.fadeAsync(1000);               //1000: time for one period (full fade in and full fade out)
 }
 
